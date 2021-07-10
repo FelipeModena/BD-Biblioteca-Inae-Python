@@ -42,7 +42,7 @@ c.execute(""" CREATE TABLE IF NOT EXISTS socio(
     )""")
 
 c.execute(""" CREATE TABLE IF NOT EXISTS funcionario(
-        cpts INTEGER NOT NULL UNIQUE PRIMARY KEY,
+        cpts TEXT NOT NULL UNIQUE PRIMARY KEY,
         salario FLOAT NOT NULL,
         funcao TEXT NOT NULL,
         dataContato TEXT NOT NULL,
