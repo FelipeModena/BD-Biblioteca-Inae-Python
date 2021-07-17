@@ -1,4 +1,3 @@
-import database
 import sqlite3
 
 #querys 
@@ -17,6 +16,7 @@ def ordemAlfAutor(nome):
     conn.commit()
     conn.close()
     return rows
+
 #nome autor z-a
 def ordemAlfCAutor(nome):
     conn = sqlite3.connect('biblioteca.db')
@@ -33,6 +33,7 @@ def ordemAlfCAutor(nome):
     conn.commit()
     conn.close()
     return rows
+
 #nome por ano de publicação
 def ordemPubliAutor(nome):
     conn = sqlite3.connect('biblioteca.db')
@@ -47,6 +48,7 @@ def ordemPubliAutor(nome):
     conn.commit()
     conn.close()
     return rows
+
 #sobrenome autor a-z
 def ordemAlfSAutor(nome):
     conn = sqlite3.connect('biblioteca.db')
@@ -63,6 +65,7 @@ def ordemAlfSAutor(nome):
     conn.commit()
     conn.close()
     return rows
+
 #sobrenome autor z-a
 def ordemAlfCSAutor(nome):
     conn = sqlite3.connect('biblioteca.db')
@@ -79,6 +82,7 @@ def ordemAlfCSAutor(nome):
     conn.commit()
     conn.close()
     return rows
+
 #sobrenome por ano de publicação
 def ordemPubliSAutor(nome):
     conn = sqlite3.connect('biblioteca.db')
@@ -95,6 +99,7 @@ def ordemPubliSAutor(nome):
     conn.commit()
     conn.close()
     return rows
+
 #título ordem alfabética
 def ordemAlfLivro(titulo):
     conn = sqlite3.connect('biblioteca.db')
@@ -111,6 +116,7 @@ def ordemAlfLivro(titulo):
     conn.commit()
     conn.close()
     return rows
+
 #título por ano de publicação
 def ordemPubliLivro(titulo):
     conn = sqlite3.connect('biblioteca.db')
@@ -127,6 +133,7 @@ def ordemPubliLivro(titulo):
     conn.commit()
     conn.close()
     return rows
+
 #título por edição
 def ordemEdiLivro(titulo):
     conn = sqlite3.connect('biblioteca.db')
@@ -143,6 +150,7 @@ def ordemEdiLivro(titulo):
     conn.commit()
     conn.close()
     return rows
+
 #palavra chave a-z
 def ordemAlfPC(text):
     conn = sqlite3.connect('biblioteca.db')
@@ -159,6 +167,7 @@ def ordemAlfPC(text):
     conn.commit()
     conn.close()
     return rows
+
 #palavra chave z-a
 def ordemAlfDPC(text):
     conn = sqlite3.connect('biblioteca.db')
@@ -175,6 +184,7 @@ def ordemAlfDPC(text):
     conn.commit()
     conn.close()
     return rows
+
 #palavra chave ano publi
 def ordemPubliPC(text):
     conn = sqlite3.connect('biblioteca.db')
@@ -191,6 +201,7 @@ def ordemPubliPC(text):
     conn.commit()
     conn.close()
     return rows
+
 #palavra chave edição
 def ordemEdicPC(text):
     conn = sqlite3.connect('biblioteca.db')
@@ -207,6 +218,7 @@ def ordemEdicPC(text):
     conn.commit()
     conn.close()
     return rows
+
 #livro por código (a-z)
 def ordemAlfCodigo(cod):
     conn = sqlite3.connect('biblioteca.db')
@@ -221,6 +233,7 @@ def ordemAlfCodigo(cod):
     conn.commit()
     conn.close()
     return rows
+
 #livro por código ano de publicação
 def ordemPubliCodigo(cod):
     conn = sqlite3.connect('biblioteca.db')
@@ -235,6 +248,7 @@ def ordemPubliCodigo(cod):
     conn.commit()
     conn.close()
     return rows
+
 #livro por código edição
 def ordemEdicCodigo(cod):
     conn = sqlite3.connect('biblioteca.db')
@@ -249,6 +263,7 @@ def ordemEdicCodigo(cod):
     conn.commit()
     conn.close()
     return rows
+
 #editora a-z
 def ordemAlfEditora(nome):
     conn = sqlite3.connect('biblioteca.db')
@@ -263,6 +278,7 @@ def ordemAlfEditora(nome):
     conn.commit()
     conn.close()
     return rows
+
 #editora z-a
 def ordemAlfDEditora(nome):
     conn = sqlite3.connect('biblioteca.db')
@@ -277,6 +293,7 @@ def ordemAlfDEditora(nome):
     conn.commit()
     conn.close()
     return rows
+
 #editora ano de publicação
 def ordemPubliEditora(nome):
     conn = sqlite3.connect('biblioteca.db')
@@ -291,6 +308,7 @@ def ordemPubliEditora(nome):
     conn.commit()
     conn.close()
     return rows
+
 #editora edição
 def ordemEdicEditora(nome):
     conn = sqlite3.connect('biblioteca.db')
@@ -305,6 +323,7 @@ def ordemEdicEditora(nome):
     conn.commit()
     conn.close()
     return rows
+
 #sócio n cadastro(a-z)
 def ordemAlfNumCadastro(nome):
     conn = sqlite3.connect('biblioteca.db')
@@ -320,6 +339,7 @@ def ordemAlfNumCadastro(nome):
     conn.commit()
     conn.close()
     return rows
+
 #sócio nome a-z
 def ordemAlfNomeCadastro(nome):
     conn = sqlite3.connect('biblioteca.db')
@@ -335,6 +355,7 @@ def ordemAlfNomeCadastro(nome):
     conn.commit()
     conn.close()
     return rows
+
 #sócio nome z-a
 def ordemAlfDNomeCadastro(nome):
     conn = sqlite3.connect('biblioteca.db')
@@ -350,7 +371,6 @@ def ordemAlfDNomeCadastro(nome):
     conn.commit()
     conn.close()
     return rows
-
 
 #ABA 2 - empréstimo e pesquisa por empréstimos 
 #nome do livro pelo código
@@ -529,7 +549,6 @@ def codigoLivro(isbn):
     conn.close()
     return rows
 
-
 def pesquisaSocio(text):
     conn = sqlite3.connect('biblioteca.db')
     c = conn.cursor()
@@ -559,4 +578,3 @@ def pesquisaFuncionario(text):
     conn.commit()
     conn.close()
     return rows
-
