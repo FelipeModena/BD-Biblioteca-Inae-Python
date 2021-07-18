@@ -62,8 +62,12 @@ c.execute("""CREATE TRIGGER IF NOT EXISTS deletaExemplar
     """)
 
 #deletar autor quando deleta livro
-######################
-
+c.execute("""CREATE TRIGGER IF NOT EXISTS deletaAutor 
+            AFTER DELETE ON livro
+                BEGIN
+                    DELETE FROM autor WHERE autor.isbn=old.isbn;
+                END;
+    """)
 
 #deletar funcionario quando deleta pessoa
 c.execute("""CREATE TRIGGER IF NOT EXISTS deletaFuncionario 

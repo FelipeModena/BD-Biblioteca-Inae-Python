@@ -10,13 +10,15 @@ c.execute("""PRAGMA foreign_keys = ON;""")
 c.execute("""CREATE VIEW IF NOT EXISTS viewLivro AS
                 SELECT
                     livro.isbn AS ISBN,
-                    livro.titTrad AS Título,
+                    livro.titTrad AS Titulo,
                     livro.titOrig AS TituloOriginal,
                     livro.genero AS Genero,
                     livro.editora AS Editora,
+                    autor.nome AS Nome,
+                    autor.sobrenome AS sobrenome,
                     (SELECT count(*)
                         FROM exemplar
-                        WHERE exemplar.isbn=livro.isbn AND exemplar.emprestado=0)
+                        WHERE exemplar.isbn=livro.isbn AND exemplar.emprestado=0) AS exemplares
                 FROM
                     livro
                 INNER JOIN exemplar ON exemplar.isbn = livro.isbn
@@ -27,15 +29,17 @@ c.execute("""CREATE VIEW IF NOT EXISTS viewLivro AS
 
 c.execute("""CREATE VIEW IF NOT EXISTS viewExemplar AS
                 SELECT
+                    exemplar.codigoExemplar AS Codigo,
                     livro.isbn AS ISBN,
-                    livro.titTrad AS Título,
+                    livro.titTrad AS Titulo,
                     livro.titOrig AS TituloOriginal,
                     autor.sobrenome AS Sobrenome,
                     autor.nome AS Nome,  
                     livro.genero AS Genero,
                     livro.editora AS Editora,
-                    exemplar.edicao AS Edição,  
-                    exemplar.anoPubli AS Publicação
+                    exemplar.edicao AS Edicao,  
+                    exemplar.anoPubli AS Publicacao,
+                    exemplar.emprestado AS Emprestado
                 FROM
                     livro
                 INNER JOIN exemplar ON exemplar.isbn = livro.isbn
@@ -49,12 +53,12 @@ c.execute("""CREATE VIEW IF NOT EXISTS viewEmprestimos AS
                     emprestimo.socio AS Cadastro,
                     pessoa.nome AS Nome,
                     pessoa.sobrenome AS Sobrenome,
-                    emprestimo.codigoExemplar AS Código,
-                    livro.titTrad AS Título,
-                    emprestimo.dataE AS DataEmpréstimo,
+                    emprestimo.codigoExemplar AS Codigo,
+                    livro.titTrad AS Titulo,
+                    emprestimo.dataE AS DataEmprestimo,
                     emprestimo.horaE AS HoraEmprestimo,
-                    devolucao.data AS DataDevolução,
-                    devolucao.hora AS HoraDevolução
+                    devolucao.data AS DataDevolucao,
+                    devolucao.hora AS HoraDevolucao
                 FROM
                     socio, emprestimo
                 INNER JOIN socio ON socio.cpf = pessoa.cpf
@@ -72,11 +76,11 @@ c.execute("""CREATE VIEW IF NOT EXISTS viewFuncionario AS
                     pessoa.sobrenome AS Sobrenome,
                     pessoa.dob AS DataNascimento,
                     funcionario.cpts AS CPTS,
-                    funcionario.funcao AS Função,
-                    funcionario.salario AS Salário,
+                    funcionario.funcao AS Funcao,
+                    funcionario.salario AS Salario,
                     funcionario.dataContrato AS DataContrato,
                     pessoa.rua AS Rua,
-                    pessoa.numero AS Número,
+                    pessoa.numero AS Numero,
                     pessoa.cidade AS Cidade,
                     pessoa.CEP AS CEP,
                     pessoa.email AS Email,
@@ -97,7 +101,7 @@ c.execute("""CREATE VIEW IF NOT EXISTS viewSocio AS
                     pessoa.email AS Email,
                     pessoa.telefone AS Telefone,
                     pessoa.rua AS Rua,
-                    pessoa.numero AS Número,
+                    pessoa.numero AS Numero,
                     pessoa.cidade AS Cidade,
                     pessoa.CEP AS CEP
                 FROM

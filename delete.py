@@ -25,4 +25,4 @@ def deletePessoa(cpf):
 
 # deleteExemplar(1)
 # deleteLivro("8585466294")
-deletePessoa("99999999917")
+#deletePessoa("99999999917")
