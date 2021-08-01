@@ -45,14 +45,14 @@ def addMAutor(many):
 def addMDevolucao(many):
     conn = sqlite3.connect('biblioteca.db')
     c = conn.cursor()
-    c.executemany("""INSERT INTO autor VALUES (?,?,?,?,?,?)""", (many))
+    c.executemany("""INSERT INTO devolucao(socio, funcionario, codigoExemplar, data, hora) VALUES (?,?,?,?,?)""", (many))
     conn.commit()
     conn.close()
 
 def addMEmprestimo(many):
     conn = sqlite3.connect('biblioteca.db')
     c = conn.cursor()
-    c.executemany("""INSERT INTO autor VALUES (?,?,?,?,?,?)""", (many))
+    c.executemany("""INSERT INTO emprestimo(socio, funcionario, codigoExemplar, dataE, horaE) VALUES (?,?,?,?,?)""", (many))
     conn.commit()
     conn.close()
 

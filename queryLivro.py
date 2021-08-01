@@ -2,6 +2,22 @@ import sqlite3
 
 # ------ PESQUISAS POR LIVROS ------
 
+def livroExiste(isbn):
+    conn = sqlite3.connect('biblioteca.db')
+    c = conn.cursor()
+    c.execute("""SELECT * FROM livro
+                WHERE 
+                    EXISTS(
+                        SELECT 1
+                        FROM livro
+                        WHERE isbn=?
+                    )
+                """, (isbn,))
+    rows=c.fetchall()
+    conn.commit()
+    conn.close()
+    return rows
+
 
 # PESQUISA POR NOME DO AUTOR
 
@@ -210,6 +226,19 @@ def ordemAlfLivro(titulo):
     conn.close()
     return rows
 #print(ordemAlfLivro("Fábulas de Esopo"))
+
+#pesquisa por título ordem alfabética contraria
+def ordemAlfDLivro(titulo):
+    conn = sqlite3.connect('biblioteca.db')
+    c = conn.cursor()
+    c.execute("""SELECT * FROM viewLivro
+                WHERE Titulo=? 
+                ORDER BY Titulo DESC;
+            """, (titulo, ))
+    rows = c.fetchall()
+    conn.commit()
+    conn.close()
+    return rows
 
 #pesquisa por titulo ordena por a-z de autor
 def buscaTituloOANA(nome):
