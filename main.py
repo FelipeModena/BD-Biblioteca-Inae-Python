@@ -310,6 +310,9 @@ def pesquisarPessoas():
     elif(socio):
         if(tipo=="Nome"):
             resposta=queryPessoas.ordemAlfNomeCadastro(pesquisa)
+        
+        elif(tipo=="Sobrenome"):
+            resposta=queryPessoas.ordemAlfSobrenomeCadastro(pesquisa)
 
         elif(tipo=="CPF"):
             resposta=queryPessoas.pesquisaSocioCPF(pesquisa)
@@ -341,11 +344,11 @@ def pesquisarPessoas():
             resposta=queryPessoas.pesquisaFuncionarioFuncao(pesquisa)
     
     elif(emprestimo):
-        if(tipo=="Nome"):
-            resposta=queryEmprestimos.nomeLivroTitulo(pesquisa)
+        if(tipo=="Cadastro"):
+            resposta=queryEmprestimos.cadastroLivroTitulo(pesquisa)
 
         elif(tipo=="Código"):
-            resposta=queryEmprestimos.codigoLivro1(pesquisa)
+            resposta=queryEmprestimos.codigoCadastroTit(pesquisa)
 
 
     respostaPessoas.show()
@@ -372,7 +375,7 @@ def deletaPessoas():
 app=QtWidgets.QApplication([])
 tela= uic.loadUi('BDBiblioteca.ui')
 respostaLivros=uic.loadUi('resposta_livros.ui')
-respostaPessoas=uic.loadUi('resposta_pessoa.ui')
+respostaPessoas=uic.loadUi('resposta_pessoas.ui')
 
 tela.CadastrarPessoa.clicked.connect(salvarPessoas)
 tela.CadastraLivro.clicked.connect(salvarLivros)

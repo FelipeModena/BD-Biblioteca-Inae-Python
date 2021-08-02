@@ -51,17 +51,14 @@ c.execute("""CREATE VIEW IF NOT EXISTS viewEmprestimos AS
                 SELECT 
                     emprestimo.codigoEmprestimo AS Codigo,
                     emprestimo.socio AS Cadastro,
-                    pessoa.nome AS Nome,
-                    pessoa.sobrenome AS Sobrenome,
-                    emprestimo.codigoExemplar AS Codigo,
-                    livro.titTrad AS Titulo,
+                    emprestimo.codigoExemplar AS CodigoExemplar,
                     emprestimo.dataE AS DataEmprestimo,
-                    emprestimo.horaE AS HoraEmprestimo
+                    emprestimo.horaE AS HoraEmprestimo,
+                    devolucao.data AS DataDevolucao,
+                    devolucao.hora AS HoraDevolucao
                 FROM
-                    emprestimo, socio
-                INNER JOIN pessoa ON socio.cpf = pessoa.cpf
-                INNER JOIN socio ON emprestimo.socio = socio.numeroCadastro
-                INNER JOIN exemplar ON exemplar.codigoExemplar = emprestimo.codigoExemplar;
+                    emprestimo
+                INNER JOIN devolucao ON devolucao.socio=emprestimo.socio;
         """)
 
 #view de funcionários-> dados de pessoa + salário, cpts, data de contratação

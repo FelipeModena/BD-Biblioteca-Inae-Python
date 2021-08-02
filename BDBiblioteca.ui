@@ -1530,6 +1530,16 @@
       </property>
       <item>
        <property name="text">
+        <string>Cadastro</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>Código</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
         <string>Nome</string>
        </property>
       </item>
@@ -1541,11 +1551,6 @@
       <item>
        <property name="text">
         <string>CPF</string>
-       </property>
-      </item>
-      <item>
-       <property name="text">
-        <string>Código</string>
        </property>
       </item>
       <item>
