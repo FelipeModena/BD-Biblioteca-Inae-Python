@@ -27,7 +27,7 @@
      <string notr="true">background-color: rgb(170, 85, 255);</string>
     </property>
     <property name="currentIndex">
-     <number>4</number>
+     <number>3</number>
     </property>
     <widget class="QWidget" name="tab">
      <property name="styleSheet">
@@ -497,7 +497,7 @@
      <widget class="QRadioButton" name="Socio_2">
       <property name="geometry">
        <rect>
-        <x>310</x>
+        <x>160</x>
         <y>460</y>
         <width>95</width>
         <height>20</height>
@@ -510,7 +510,7 @@
      <widget class="QRadioButton" name="Funcionario">
       <property name="geometry">
        <rect>
-        <x>460</x>
+        <x>310</x>
         <y>460</y>
         <width>95</width>
         <height>20</height>
@@ -534,6 +534,84 @@
       </property>
       <property name="text">
        <string>Atualizar</string>
+      </property>
+     </widget>
+     <widget class="QRadioButton" name="Endereco">
+      <property name="geometry">
+       <rect>
+        <x>500</x>
+        <y>370</y>
+        <width>95</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Endereço</string>
+      </property>
+     </widget>
+     <widget class="QRadioButton" name="Nome_3">
+      <property name="geometry">
+       <rect>
+        <x>610</x>
+        <y>370</y>
+        <width>95</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Nome</string>
+      </property>
+     </widget>
+     <widget class="QRadioButton" name="atualizaFuncao">
+      <property name="geometry">
+       <rect>
+        <x>500</x>
+        <y>410</y>
+        <width>95</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Função</string>
+      </property>
+     </widget>
+     <widget class="QRadioButton" name="Salario_2">
+      <property name="geometry">
+       <rect>
+        <x>620</x>
+        <y>410</y>
+        <width>95</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Salário</string>
+      </property>
+     </widget>
+     <widget class="QRadioButton" name="Email_2">
+      <property name="geometry">
+       <rect>
+        <x>500</x>
+        <y>440</y>
+        <width>95</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Email</string>
+      </property>
+     </widget>
+     <widget class="QRadioButton" name="AtualizaTelefone">
+      <property name="geometry">
+       <rect>
+        <x>620</x>
+        <y>440</y>
+        <width>95</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Telefone</string>
       </property>
      </widget>
     </widget>
@@ -1284,11 +1362,6 @@
       </item>
       <item>
        <property name="text">
-        <string>Editora</string>
-       </property>
-      </item>
-      <item>
-       <property name="text">
         <string>Palavra Chave</string>
        </property>
       </item>
@@ -1421,6 +1494,32 @@
       </property>
       <property name="styleSheet">
        <string notr="true">background-color: rgb(255, 255, 255);</string>
+      </property>
+     </widget>
+     <widget class="QRadioButton" name="radioButton_4">
+      <property name="geometry">
+       <rect>
+        <x>640</x>
+        <y>380</y>
+        <width>95</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Exemplar</string>
+      </property>
+     </widget>
+     <widget class="QRadioButton" name="radioButton_5">
+      <property name="geometry">
+       <rect>
+        <x>640</x>
+        <y>430</y>
+        <width>95</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Livro</string>
       </property>
      </widget>
     </widget>

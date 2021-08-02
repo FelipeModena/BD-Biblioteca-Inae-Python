@@ -75,28 +75,28 @@ def atualizaPessoas():
     email=tela.InsertEmail.text()
     salario=tela.InsertSalario.text()
     funcao=tela.InsertFuncao.text()
-    emaill=[(email, cpf)]
-    enderecol=[(rua, numero, cidade, cep, cpf)]
-    funcaol=[(funcao, cpf)]
-    salariol=[(salario, cpf)]
-    telefonel=[(telefone, cpf)]
-    nomel=[(nome, cpf)]
+    emaill=[email, cpf, ]
+    enderecol=[(rua, numero, cidade, cep, cpf, )]
+    funcaol=[funcao, cpf, ]
+    salariol=[salario, cpf,]
+    telefonel=[telefone, cpf,]
+    nomel=[nome, cpf,]
 
     if(cpf==" "):
         print("informe o cadastro de quem deseja atualizar")
     else:
-        if(not(nome==" ")):
+        if(tela.Nome_3.isChecked()):
             update.updateNome(nomel)
-        if(not(rua==" ") and not(numero==" ") and not(cidade==" ") and not(cep==" ")):
+        if(tela.Endereco.isChecked()):
             update.updateEndereco(enderecol)
-        if(not(email==" ")):
+        if(tela.Email_2.isChecked()):
             update.updateEmail(emaill)
-        if(not(funcao=="")):
-            update.updateFuncao
-        if(not(salario==" ")):
-            update.updateSalario
-        if(not(telefone==" ")):
-            update.updateTelefone
+        if(tela.atualizaFuncao.isChecked()):
+            update.updateFuncao(funcaol)
+        if(tela.Salario_2.isChecked()):
+            update.updateSalario(salariol)
+        if(tela.AtualizaTelefone.isChecked()):
+            update.updateTelefone(telefonel)
         print("Atualizações realizadas com sucesso")
     
 #Página de cadastro de livros
@@ -176,10 +176,10 @@ def deletaLivros():
     if(codigo==" " and isbn==" "):
         print("informe o livro ou exemplar que deseja remover.")
     else:
-        if(not(codigo==" ")):
+        if(tela.radioButton_4.isChecked()):
             delete.deleteExemplar(codigol)
             print("Exemplar deletado com sucesso")
-        elif(not(isbn==" ")):
+        elif(tela.radioButton_5.isChecked()):
             delete.deleteLivro(isbnl)
             print("livro deletado com sucesso")
     tela.InsertCodExemDelete.clear()
@@ -201,7 +201,7 @@ def emprestar():
         print("Emprestimo realizado com sucesso.")
     codigoExemplar=tela.InsertCodigoExemplar.clear()
     socio=tela.InsertSocio.clear()
-    funcionario=tela.InsertFuncionario.crear()
+    funcionario=tela.InsertFuncionario.clear()
 
 def devolver():
     codigoExemplar=tela.InsertCodigoExemplar.text()
@@ -218,7 +218,7 @@ def devolver():
         print("Devolução realizada com sucesso.")
     codigoExemplar=tela.InsertCodigoExemplar.clear()
     socio=tela.InsertSocio.clear()
-    funcionario=tela.InsertFuncionario.crear()
+    funcionario=tela.InsertFuncionario.clear()
 
 #Página de pesquisa de catálogo
 def pesquisarCatalogo():
@@ -297,9 +297,9 @@ def pesquisarPessoas():
     
     resposta=[]
 
-    if(tela.PesquisaSocio.isChecked()):
+    if(tela.PesquisarSocio.isChecked()):
         socio=True
-    elif(tela.PesquisaFuncionario.isChecked()):
+    elif(tela.PesquisarFuncionario.isChecked()):
         funcionario=True
     elif(tela.Emprestimo.isChecked()):
         emprestimo=True
@@ -322,6 +322,9 @@ def pesquisarPessoas():
         
         elif(tipo=="E-mail"):
             resposta=queryPessoas.pesquisaSocioEmail(pesquisa)
+        for i in range(0, len(resposta)):
+            for j in range (0, 8):
+                respostaPessoas.tableWidget.setItem(i,j, QtWidgets.QTableWidgetItem(str(resposta[i][j])))
     
     elif(funcionario):
 
@@ -342,6 +345,9 @@ def pesquisarPessoas():
 
         elif(tipo=="Função"):
             resposta=queryPessoas.pesquisaFuncionarioFuncao(pesquisa)
+        for i in range(0, len(resposta)):
+            for j in range (0, 8):
+                respostaPessoas.tableWidget.setItem(i,j, QtWidgets.QTableWidgetItem(str(resposta[i][j])))
     
     elif(emprestimo):
         if(tipo=="Cadastro"):
@@ -350,14 +356,16 @@ def pesquisarPessoas():
         elif(tipo=="Código"):
             resposta=queryEmprestimos.codigoCadastroTit(pesquisa)
 
+        for i in range(0, len(resposta)):
+            for j in range (0, 7):
+                respostaPessoas.tableWidget.setItem(i,j, QtWidgets.QTableWidgetItem(str(resposta[i][j])))
+
 
     respostaPessoas.show()
     respostaPessoas.tableWidget.setRowCount(len(resposta))
     respostaPessoas.tableWidget.setColumnCount(8)
     
-    for i in range(0, len(resposta)):
-        for j in range (0, 8):
-            respostaPessoas.tableWidget.setItem(i,j, QtWidgets.QTableWidgetItem(str(resposta[i][j])))
+    
 
 def deletaPessoas():
     pessoa=tela.InsertCPFDelete.text()
@@ -366,7 +374,7 @@ def deletaPessoas():
     if(pessoa==" "):
         print("Informe um CPF")
     else:
-        delete.deletePessoale(cpf)
+        delete.deletePessoa(cpf)
         print("Deletada com sucesso")
     tela.InsertCPFDelete.clear()
 

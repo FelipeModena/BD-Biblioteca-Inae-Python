@@ -8,7 +8,7 @@ def cadastroLivroTitulo(valor):
     c = conn.cursor()
     c.execute("""SELECT * FROM viewEmprestimos
                 WHERE Cadastro=?
-                ORDER BY Titulo
+                ORDER BY Codigo
             """, (valor,))
     rows = c.fetchall()
     conn.commit()
@@ -16,12 +16,12 @@ def cadastroLivroTitulo(valor):
     return rows
 
 #pesquisar emprestimos por codigo z-a titulo
-def codigoCadastroTit(valor):
+def codigoCadastroTit(valor): 
     conn = sqlite3.connect('biblioteca.db')
     c = conn.cursor()
     c.execute("""SELECT * FROM viewEmprestimos
                 WHERE Cadastro=?
-                ORDER BY Titulo 
+                ORDER BY Cadastro
             """, (valor,))
     rows = c.fetchall()
     conn.commit()
