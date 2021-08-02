@@ -64,7 +64,8 @@ livro=[
             ("8565484572", "Laços, Turma da Mônica", "Laços, Turma da Mônica", "Panini", "Quadrinhos", 0),
             ("8537809667", "Mágico de Oz, O", "Wizard of Oz, The", "Aventura", "Zahar", 0),
 ]
-#addMLivro(livro)
+addMLivro(livro)
+
 exemplar=[
     (0, 1999, 1, "8585466294"),
     (0, 1999, 2, "8585466294"),
@@ -72,7 +73,8 @@ exemplar=[
     (0, 1999, 3, "8585466294"),
     (0, 1999, 1, "8585466294"),
 ]
-#addMExemplar(exemplar)
+addMExemplar(exemplar)
+
 autor=[
     ( "Esopo",      "Esopo"     ,"8585466294" ),
     ( "Machado",    "Ana Maria" ,"8574061557" ),
@@ -81,7 +83,8 @@ autor=[
     ( "Cafaggi",    "Vítor"     ,"8565484572" ),
     ( "Baum",       "L. Frank"  ,"8537809667" )
 ]
-#addMAutor(autor)
+addMAutor(autor)
+
 pessoa=[
      ("99999999911","pessoNome1","pessoaSobrenome1","12-12-2012","rua 1",134,"Valinhos","09340000","9123-1234", "asdas@Sgdfd.com"),
      ("99999999912","pessoNome2","pessoaSobrenome2","12-12-2012","rua 1",134,"Valinhos","09340000","9123-1234", "asdas@Sgdfd.com"),
@@ -92,13 +95,14 @@ pessoa=[
      ("99999999917","pessoNome7","pessoaSobrenome7","12-12-2012","rua 1",134,"Valinhos","09340000","9123-1234", "asdas@Sgdfd.com"),
      ("99999999918","pessoNome8","pessoaSobrenome8","12-12-2012","rua 1",134,"Valinhos","09340000","9123-1234", "asdas@Sgdfd.com"),
 ]
-#addMPessoa(pessoa)
+addMPessoa(pessoa)
+
 funcionario=[
     ("1231232",1.32,"bibliotecario","12-12-2012","99999999917"),
     ("1231231",1.211,"almoxarife","12-12-2012","99999999918"),
     ("1234566",1.3333,"faxina","12-12-2012","99999999916"),
 ]
-#addMFuncionario(funcionario)
+addMFuncionario(funcionario)
 
 socio=[
     ("99999999911", ),
@@ -106,4 +110,4 @@ socio=[
     ("99999999913", ),
     ("99999999914", ),
 ]
-#addMSocio(socio)
+addMSocio(socio)

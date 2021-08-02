@@ -3,6 +3,10 @@ from PyQt5 import uic, QtWidgets
 import insert
 from datetime import date, datetime
 import queryLivro
+import queryPessoas
+import queryEmprestimos
+import update
+import delete
 
 #----------------------- FUNÇÕES DE CADA PÁGINA DA INTERFACE ----------------------------
 #Página de cadastro de pessoas
@@ -59,6 +63,42 @@ def salvarPessoas():
     tela.InsertSalario.clear()
     tela.InsertFuncao.clear()
 
+def atualizaPessoas():
+    informacao=tela.AtualizarPessoas.text()
+    cpf=tela.InsertCPF.text()
+    nome=tela.InsertNome.text()
+    rua=tela.InsertRua.text()
+    numero=tela.InsertNumero.text()
+    cidade=tela.InsertCidade.text()
+    cep=tela.InsertCEP.text()
+    telefone=tela.InsertTelefone.text()
+    email=tela.InsertEmail.text()
+    salario=tela.InsertSalario.text()
+    funcao=tela.InsertFuncao.text()
+    emaill=[(email, cpf)]
+    enderecol=[(rua, numero, cidade, cep, cpf)]
+    funcaol=[(funcao, cpf)]
+    salariol=[(salario, cpf)]
+    telefonel=[(telefone, cpf)]
+    nomel=[(nome, cpf)]
+
+    if(cpf==" "):
+        print("informe o cadastro de quem deseja atualizar")
+    else:
+        if(not(nome==" ")):
+            update.updateNome(nomel)
+        if(not(rua==" ") and not(numero==" ") and not(cidade==" ") and not(cep==" ")):
+            update.updateEndereco(enderecol)
+        if(not(email==" ")):
+            update.updateEmail(emaill)
+        if(not(funcao=="")):
+            update.updateFuncao
+        if(not(salario==" ")):
+            update.updateSalario
+        if(not(telefone==" ")):
+            update.updateTelefone
+        print("Atualizações realizadas com sucesso")
+    
 #Página de cadastro de livros
 def salvarLivros():
     ano=tela.InsertAnoPublicacao.text()
@@ -127,6 +167,24 @@ def salvarLivros():
     sobrenome3=tela.InsertSobrenomeAutor3.clear()
     nome3=tela.InsertNomeAutor3.clear()
 
+def deletaLivros():
+    codigo=tela.InsertCodExemDelete.text()
+    isbn=tela.InsertTitLivroDelete.text()
+    codigol=[(codigo,)]
+    isbnl=[(isbn,)]
+
+    if(codigo==" " and isbn==" "):
+        print("informe o livro ou exemplar que deseja remover.")
+    else:
+        if(not(codigo==" ")):
+            delete.deleteExemplar(codigol)
+            print("Exemplar deletado com sucesso")
+        elif(not(isbn==" ")):
+            delete.deleteLivro(isbnl)
+            print("livro deletado com sucesso")
+    tela.InsertCodExemDelete.clear()
+    tela.InsertTitLivroDelete.clear()
+
 #Página de empréstimos e devoluções
 def emprestar():
     codigoExemplar=tela.InsertCodigoExemplar.text()
@@ -178,62 +236,47 @@ def pesquisarCatalogo():
             resposta=queryLivro.ordemAlfDLivro(pesquisa)
 
         elif(ordem=="Ano de Publicação"):
-            resposta=queryLivro.ordemAlfLivro(pesquisa)
+            resposta=queryLivro.buscaTituloOrdenaPublicacao(pesquisa)
 
         elif(ordem=="Edição"):
-            resposta=queryLivro.ordemAlfLivro(pesquisa)
+            resposta=queryLivro.buscaTituloOrdenaEdicao(pesquisa)
 
     elif(tipo=="Nome Autor"):
         if(ordem=="A-Z"):
-            resposta=queryLivro.ordemAlfLivro(pesquisa)
+            resposta=queryLivro.ordemAlfAutor(pesquisa)
 
         elif(ordem=="Z-A"):
-            resposta=queryLivro.ordemAlfLivro(pesquisa)
+            resposta=queryLivro.ordemAlfCAutor(pesquisa)
 
         elif(ordem=="Ano de Publicação"):
-            resposta=queryLivro.ordemAlfLivro(pesquisa)
+            resposta=queryLivro.buscaAutorOrdenaData(pesquisa)
 
         elif(ordem=="Edição"):
-            resposta=queryLivro.ordemAlfLivro(pesquisa)
+            resposta=queryLivro.buscaAutorOrdenaEdicao(pesquisa)
 
     elif(tipo=="Sobrenome Autor"):
         if(ordem=="A-Z"):
-            resposta=queryLivro.ordemAlfLivro(pesquisa)
+            resposta=queryLivro.ordemAlfSAutor(pesquisa)
 
         elif(ordem=="Z-A"):
-            resposta=queryLivro.ordemAlfLivro(pesquisa)
+            resposta=queryLivro.ordemAlfCSAutor(pesquisa)
 
         elif(ordem=="Ano de Publicação"):
-            resposta=queryLivro.ordemAlfLivro(pesquisa)
+            resposta=queryLivro.buscaSAutorOrdenaData(pesquisa)
 
         elif(ordem=="Edição"):
-            resposta=queryLivro.ordemAlfLivro(pesquisa)
-
-    elif(tipo=="Editora"):
-        if(ordem=="A-Z"):
-            resposta=queryLivro.ordemAlfLivro(pesquisa)
-
-        elif(ordem=="Z-A"):
-            resposta=queryLivro.ordemAlfLivro(pesquisa)
-
-        elif(ordem=="Ano de Publicação"):
-            resposta=queryLivro.ordemAlfLivro(pesquisa)
-
-        elif(ordem=="Edição"):
-            resposta=queryLivro.ordemAlfLivro(pesquisa)
+            resposta=queryLivro.buscaSAutorOrdenaEdicao(pesquisa)
 
     elif(tipo=="Palavra Chave"):
         if(ordem=="A-Z"):
-            resposta=queryLivro.ordemAlfLivro(pesquisa)
+            resposta=queryLivro.ordemAlfPC(pesquisa)
 
         elif(ordem=="Z-A"):
-            resposta=queryLivro.ordemAlfLivro(pesquisa)
+            resposta=queryLivro.ordemAlfDPC(pesquisa)
 
-        elif(ordem=="Ano de Publicação"):
-            resposta=queryLivro.ordemAlfLivro(pesquisa)
+        elif(ordem=="Ano de Publicação" or ordem=="Edição"):
+            print("Esta pesquisa não é possível")
 
-        elif(ordem=="Edição"):
-            resposta=queryLivro.ordemAlfLivro(pesquisa)
 
     respostaLivros.show()
     respostaLivros.tableWidget.setRowCount(len(resposta))
@@ -243,18 +286,93 @@ def pesquisarCatalogo():
         for j in range (0, 8):
             respostaLivros.tableWidget.setItem(i,j, QtWidgets.QTableWidgetItem(str(resposta[i][j])))
 
-
-
 #Página de pesquisa de pessoas
 def pesquisarPessoas():
-    print("pesquisar pessoas")
+    pesquisa=tela.InsertPesquisa_2.text()
+    tipo=str(tela.SelecionaPesquisarPor_2.currentText())
+    ordem=str(tela.SelecionaOrdenarPor_2.currentText())
+    socio=False
+    funcionario=False
+    emprestimo=False
+    
+    resposta=[]
+
+    if(tela.PesquisaSocio.isChecked()):
+        socio=True
+    elif(tela.PesquisaFuncionario.isChecked()):
+        funcionario=True
+    elif(tela.Emprestimo.isChecked()):
+        emprestimo=True
+    
+    if(socio and tipo=="Função"):
+        print('Essa pesquisa não pode ser feita.')
+
+    elif(socio):
+        if(tipo=="Nome"):
+            resposta=queryPessoas.ordemAlfNomeCadastro(pesquisa)
+
+        elif(tipo=="CPF"):
+            resposta=queryPessoas.pesquisaSocioCPF(pesquisa)
+
+        elif(tipo=="Código"):
+            resposta=queryPessoas.ordemAlfNumCadastro(pesquisa)
+        
+        elif(tipo=="E-mail"):
+            resposta=queryPessoas.pesquisaSocioEmail(pesquisa)
+    
+    elif(funcionario):
+
+        if(tipo=="Nome"):
+            resposta=queryPessoas.pesquisaFuncionarioNome(pesquisa)
+        
+        elif(tipo=="Sobrenome"):
+            resposta=queryPessoas.pesquisaFuncionarioSobrenome(pesquisa)
+
+        elif(tipo=="CPF"):
+            resposta=queryPessoas.pesquisaFuncionarioCPF(pesquisa)
+
+        elif(tipo=="Código"):
+            resposta=queryPessoas.pesquisaFuncionarioCPTS(pesquisa)
+        
+        elif(tipo=="E-mail"):
+            resposta=queryPessoas.pesquisaFuncionarioEmail(pesquisa)
+
+        elif(tipo=="Função"):
+            resposta=queryPessoas.pesquisaFuncionarioFuncao(pesquisa)
+    
+    elif(emprestimo):
+        if(tipo=="Nome"):
+            resposta=queryEmprestimos.nomeLivroTitulo(pesquisa)
+
+        elif(tipo=="Código"):
+            resposta=queryEmprestimos.codigoLivro1(pesquisa)
 
 
+    respostaPessoas.show()
+    respostaPessoas.tableWidget.setRowCount(len(resposta))
+    respostaPessoas.tableWidget.setColumnCount(8)
+    
+    for i in range(0, len(resposta)):
+        for j in range (0, 8):
+            respostaPessoas.tableWidget.setItem(i,j, QtWidgets.QTableWidgetItem(str(resposta[i][j])))
 
+def deletaPessoas():
+    pessoa=tela.InsertCPFDelete.text()
+    cpf=[(pessoa,)]
+
+    if(pessoa==" "):
+        print("Informe um CPF")
+    else:
+        delete.deletePessoale(cpf)
+        print("Deletada com sucesso")
+    tela.InsertCPFDelete.clear()
+
+
+#--------------------------- CONFIGURAÇÕES PARA AS TELAS ---------------------
 app=QtWidgets.QApplication([])
 tela= uic.loadUi('BDBiblioteca.ui')
 respostaLivros=uic.loadUi('resposta_livros.ui')
-
+respostaPessoas=uic.loadUi('resposta_pessoa.ui')
 
 tela.CadastrarPessoa.clicked.connect(salvarPessoas)
 tela.CadastraLivro.clicked.connect(salvarLivros)
@@ -262,7 +380,9 @@ tela.Emprestar.clicked.connect(emprestar)
 tela.Devolver.clicked.connect(devolver)
 tela.PesquisarCatalogo.clicked.connect(pesquisarCatalogo)
 tela.PesquisaPessoas.clicked.connect(pesquisarPessoas)
-
+tela.AtualizarPessoas.clicked.connect(atualizaPessoas)
+tela.DeletarLivros.clicked.connect(deletaLivros)
+tela.DeletarPessoa.clicked.connect(deletaPessoas)
 
 tela.show()
 app.exec()

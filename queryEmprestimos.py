@@ -3,7 +3,7 @@ import sqlite3
 # ------ PESQUISAS POR EMPRÉSTIMOS ------
 
 #pesquisar emprestimos por cadastro do sócio ordem a-z titulo
-def codigoLivro(valor):
+def codigoLivro1(valor):
     conn = sqlite3.connect('biblioteca.db')
     c = conn.cursor()
     c.execute("""SELECT * FROM viewEmprestimos
@@ -16,7 +16,7 @@ def codigoLivro(valor):
     return rows
 
 #pesquisar emprestimos por cadastro do sócio ordem z-a titulo
-def codigoLivro(valor):
+def codigoLivroTit(valor):
     conn = sqlite3.connect('biblioteca.db')
     c = conn.cursor()
     c.execute("""SELECT * FROM viewEmprestimos
@@ -29,7 +29,7 @@ def codigoLivro(valor):
     return rows
 
 #pesquisar emprestimos por cadastro do sócio ordem data cres
-def codigoLivro(valor):
+def codigoLivroData(valor):
     conn = sqlite3.connect('biblioteca.db')
     c = conn.cursor()
     c.execute("""SELECT * FROM viewEmprestimos
@@ -42,7 +42,7 @@ def codigoLivro(valor):
     return rows
     
 #pesquisar emprestimos por cadastro do sócio ordem data decresc
-def codigoLivro(valor):
+def codigoLivroDataD(valor):
     conn = sqlite3.connect('biblioteca.db')
     c = conn.cursor()
     c.execute("""SELECT * FROM viewEmprestimos
@@ -55,7 +55,7 @@ def codigoLivro(valor):
     return rows
 
 #pesquisar emprestimos por nome do sócio ordem a-z titulo
-def codigoLivro(valor):
+def nomeLivroTitulo(valor):
     conn = sqlite3.connect('biblioteca.db')
     c = conn.cursor()
     c.execute("""SELECT * FROM viewEmprestimos
@@ -68,7 +68,7 @@ def codigoLivro(valor):
     return rows
 
 #pesquisar emprestimos por nome do sócio ordem z-a titulo
-def codigoLivro(valor):
+def nomeLivroTitD(valor):
     conn = sqlite3.connect('biblioteca.db')
     c = conn.cursor()
     c.execute("""SELECT * FROM viewEmprestimos
@@ -81,7 +81,7 @@ def codigoLivro(valor):
     return rows
 
 #pesquisar emprestimos por nome do sócio ordem data cres
-def codigoLivro(valor):
+def nomeLivroData(valor):
     conn = sqlite3.connect('biblioteca.db')
     c = conn.cursor()
     c.execute("""SELECT * FROM viewEmprestimos
@@ -94,7 +94,7 @@ def codigoLivro(valor):
     return rows
 
 #pesquisar emprestimos por nome do sócio ordem data decresc
-def codigoLivro(valor):
+def momeLivroDataD(valor):
     conn = sqlite3.connect('biblioteca.db')
     c = conn.cursor()
     c.execute("""SELECT * FROM viewEmprestimos
@@ -107,7 +107,7 @@ def codigoLivro(valor):
     return rows
 
 #pesquisar emprestimos por sobrenome do sócio ordem a-z titulo
-def codigoLivro(valor):
+def sobrenomeLivroTitulo(valor):
     conn = sqlite3.connect('biblioteca.db')
     c = conn.cursor()
     c.execute("""SELECT * FROM viewEmprestimos
@@ -120,7 +120,7 @@ def codigoLivro(valor):
     return rows
 
 #pesquisar emprestimos por sobrenome do sócio ordem z-a titulo
-def codigoLivro(valor):
+def sobrenomeLivroTitD(valor):
     conn = sqlite3.connect('biblioteca.db')
     c = conn.cursor()
     c.execute("""SELECT * FROM viewEmprestimos
@@ -133,7 +133,7 @@ def codigoLivro(valor):
     return rows
 
 #pesquisar emprestimos por sobrenome do sócio ordem data cres
-def codigoLivro(valor):
+def SobrenomeLivroDataE(valor):
     conn = sqlite3.connect('biblioteca.db')
     c = conn.cursor()
     c.execute("""SELECT * FROM viewEmprestimos
@@ -146,7 +146,7 @@ def codigoLivro(valor):
     return rows
 
 #pesquisar emprestimos por sobrenome do sócio ordem data decresc
-def codigoLivro(valor):
+def SobrenomeLivroDataED(valor):
     conn = sqlite3.connect('biblioteca.db')
     c = conn.cursor()
     c.execute("""SELECT * FROM viewEmprestimos
@@ -159,7 +159,7 @@ def codigoLivro(valor):
     return rows
 
 #pesquisar emprestimos por codigo exemplar ordem a-z nome socio
-def codigoLivro(valor):
+def codigoLivroNome(valor):
     conn = sqlite3.connect('biblioteca.db')
     c = conn.cursor()
     c.execute("""SELECT * FROM viewEmprestimos
@@ -172,7 +172,7 @@ def codigoLivro(valor):
     return rows
 
 #pesquisar emprestimos por codigo exemplar ordem z-a nome socio
-def codigoLivro(valor):
+def codigoLivroNomeD(valor):
     conn = sqlite3.connect('biblioteca.db')
     c = conn.cursor()
     c.execute("""SELECT * FROM viewEmprestimos

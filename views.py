@@ -58,10 +58,9 @@ c.execute("""CREATE VIEW IF NOT EXISTS viewEmprestimos AS
                     emprestimo.dataE AS DataEmprestimo,
                     emprestimo.horaE AS HoraEmprestimo
                 FROM
-                    socio, emprestimo, livro, exemplar
-                INNER JOIN socio ON socio.cpf = pessoa.cpf
-                INNER JOIN emprestimo ON emprestimo.socio = socio.numeroCadastro
-                INNER JOIN livro ON livro.isbn = exemplar.isbn
+                    emprestimo, socio
+                INNER JOIN pessoa ON socio.cpf = pessoa.cpf
+                INNER JOIN socio ON emprestimo.socio = socio.numeroCadastro
                 INNER JOIN exemplar ON exemplar.codigoExemplar = emprestimo.codigoExemplar;
         """)
 

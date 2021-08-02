@@ -47,7 +47,8 @@ def ordemAlfDNomeCadastro(nome):
     conn = sqlite3.connect('biblioteca.db')
     c = conn.cursor()
     c.execute("""SELECT * FROM viewSocio
-                WHERE nome=?   
+                WHERE Nome=?  
+                ORDER BY Nome 
             """, (nome, ))
     rows = c.fetchall()
     conn.commit()

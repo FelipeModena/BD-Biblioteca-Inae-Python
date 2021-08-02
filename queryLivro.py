@@ -25,7 +25,7 @@ def livroExiste(isbn):
 def ordemAlfAutor(nome):
     conn = sqlite3.connect('biblioteca.db')
     c = conn.cursor()
-    c.execute("""SELECT * FROM viewLivro
+    c.execute("""SELECT * FROM viewExemplar
                 WHERE Nome=?
                 ORDER BY Titulo
             """, (nome, ))
@@ -39,7 +39,7 @@ def ordemAlfAutor(nome):
 def ordemAlfCAutor(nome):
     conn = sqlite3.connect('biblioteca.db')
     c = conn.cursor()
-    c.execute("""SELECT * FROM viewLivro
+    c.execute("""SELECT * FROM viewExemplar
                 WHERE Nome=?
                 ORDER BY Titulo DESC;
             """, (nome, ))
@@ -53,7 +53,7 @@ def ordemAlfCAutor(nome):
 def buscaAutorOAS(nome):
     conn = sqlite3.connect('biblioteca.db')
     c = conn.cursor()
-    c.execute("""SELECT * FROM viewLivro
+    c.execute("""SELECT * FROM viewExemplar
                 WHERE Nome=?
                 ORDER BY Sobrenome
             """, (nome, ))
@@ -67,7 +67,7 @@ def buscaAutorOAS(nome):
 def buscaAutorOADS(nome):
     conn = sqlite3.connect('biblioteca.db')
     c = conn.cursor()
-    c.execute("""SELECT * FROM viewLivro
+    c.execute("""SELECT * FROM viewExemplar
                 WHERE Nome=?
                 ORDER BY Sobrenome DESC
             """, (nome, ))
@@ -81,7 +81,7 @@ def buscaAutorOADS(nome):
 def buscaAutorOEdit(nome):
     conn = sqlite3.connect('biblioteca.db')
     c = conn.cursor()
-    c.execute("""SELECT * FROM viewLivro
+    c.execute("""SELECT * FROM viewExemplar
                 WHERE Nome=?
                 ORDER BY Editora
             """, (nome, ))
@@ -95,7 +95,7 @@ def buscaAutorOEdit(nome):
 def buscaAutorOATO(nome):
     conn = sqlite3.connect('biblioteca.db')
     c = conn.cursor()
-    c.execute("""SELECT * FROM viewLivro
+    c.execute("""SELECT * FROM viewExemplar
                 WHERE Nome=?
                 ORDER BY TituloOriginal
             """, (nome, ))
@@ -109,7 +109,7 @@ def buscaAutorOATO(nome):
 def buscaAutorOADTO(nome):
     conn = sqlite3.connect('biblioteca.db')
     c = conn.cursor()
-    c.execute("""SELECT * FROM viewLivro
+    c.execute("""SELECT * FROM viewExemplar
                 WHERE Nome=?
                 ORDER BY TituloOriginal DESC
             """, (nome, ))
@@ -119,6 +119,32 @@ def buscaAutorOADTO(nome):
     return rows 
 #print(buscaAutorOADTO("Esopo"))
 
+def buscaAutorOrdenaData(nome):
+    conn = sqlite3.connect('biblioteca.db')
+    c = conn.cursor()
+    c.execute("""SELECT * FROM viewExemplar
+                WHERE Nome=?
+                ORDER BY Publicacao
+            """, (nome, ))
+    rows = c.fetchall()
+    conn.commit()
+    conn.close()
+    return rows 
+
+def buscaAutorOrdenaEdicao(nome):
+    conn = sqlite3.connect('biblioteca.db')
+    c = conn.cursor()
+    c.execute("""SELECT * FROM viewExemplar
+                WHERE Nome=?
+                ORDER BY Edicao
+            """, (nome, ))
+    rows = c.fetchall()
+    conn.commit()
+    conn.close()
+    return rows 
+
+
+
 # --------------------------------
 # PESQUISA POR SOBRENOME DO AUTOR
 
@@ -126,7 +152,7 @@ def buscaAutorOADTO(nome):
 def ordemAlfSAutor(nome):
     conn = sqlite3.connect('biblioteca.db')
     c = conn.cursor()
-    c.execute("""SELECT * FROM viewLivro
+    c.execute("""SELECT * FROM viewExemplar
                 WHERE Sobrenome=?
                 ORDER BY Titulo;
             """, (nome, ))
@@ -140,7 +166,7 @@ def ordemAlfSAutor(nome):
 def ordemAlfCSAutor(nome):
     conn = sqlite3.connect('biblioteca.db')
     c = conn.cursor()
-    c.execute("""SELECT * FROM viewLivro
+    c.execute("""SELECT * FROM viewExemplar
                 WHERE Sobrenome=?
                 ORDER BY Titulo DESC;
             """, (nome, ))
@@ -154,7 +180,7 @@ def ordemAlfCSAutor(nome):
 def buscaSAutorOAN(nome):
     conn = sqlite3.connect('biblioteca.db')
     c = conn.cursor()
-    c.execute("""SELECT * FROM viewLivro
+    c.execute("""SELECT * FROM viewExemplar
                 WHERE Sobrenome=?
                 ORDER BY Nome
             """, (nome, ))
@@ -168,7 +194,7 @@ def buscaSAutorOAN(nome):
 def buscaSAutorOADN(nome):
     conn = sqlite3.connect('biblioteca.db')
     c = conn.cursor()
-    c.execute("""SELECT * FROM viewLivro
+    c.execute("""SELECT * FROM viewExemplar
                 WHERE Sobrenome=?
                 ORDER BY Nome DESC
             """, (nome, ))
@@ -178,6 +204,30 @@ def buscaSAutorOADN(nome):
     return rows 
 #print(buscaSAutorOADN("Esopo"))
 
+def buscaSAutorOrdenaData(nome):
+    conn = sqlite3.connect('biblioteca.db')
+    c = conn.cursor()
+    c.execute("""SELECT * FROM viewExemplar
+                WHERE Sobrenome=?
+                ORDER BY Publicacao
+            """, (nome, ))
+    rows = c.fetchall()
+    conn.commit()
+    conn.close()
+    return rows 
+
+def buscaSAutorOrdenaEdicao(nome):
+    conn = sqlite3.connect('biblioteca.db')
+    c = conn.cursor()
+    c.execute("""SELECT * FROM viewExemplar
+                WHERE Sobrenome=?
+                ORDER BY Edicao
+            """, (nome, ))
+    rows = c.fetchall()
+    conn.commit()
+    conn.close()
+    return rows 
+
 # --------------------------------
 # PESQUISA POR EDITORA
 
@@ -185,7 +235,7 @@ def buscaSAutorOADN(nome):
 def ordemAlfEditora(nome):
     conn = sqlite3.connect('biblioteca.db')
     c = conn.cursor()
-    c.execute("""SELECT * FROM viewLivro
+    c.execute("""SELECT * FROM viewExemplar
                 WHERE Editora=?
                 ORDER BY Titulo;
             """, (nome, ))
@@ -199,7 +249,7 @@ def ordemAlfEditora(nome):
 def ordemAlfDEditora(nome):
     conn = sqlite3.connect('biblioteca.db')
     c = conn.cursor()
-    c.execute("""SELECT * FROM viewLivro
+    c.execute("""SELECT * FROM viewExemplar
                 WHERE Editora=?
                 ORDER BY Titulo DESC;
             """, (nome, ))
@@ -217,7 +267,7 @@ def ordemAlfDEditora(nome):
 def ordemAlfLivro(titulo):
     conn = sqlite3.connect('biblioteca.db')
     c = conn.cursor()
-    c.execute("""SELECT * FROM viewLivro
+    c.execute("""SELECT * FROM viewExemplar
                 WHERE Titulo=? 
                 ORDER BY Titulo;
             """, (titulo, ))
@@ -231,7 +281,7 @@ def ordemAlfLivro(titulo):
 def ordemAlfDLivro(titulo):
     conn = sqlite3.connect('biblioteca.db')
     c = conn.cursor()
-    c.execute("""SELECT * FROM viewLivro
+    c.execute("""SELECT * FROM viewExemplar
                 WHERE Titulo=? 
                 ORDER BY Titulo DESC;
             """, (titulo, ))
@@ -244,7 +294,7 @@ def ordemAlfDLivro(titulo):
 def buscaTituloOANA(nome):
     conn = sqlite3.connect('biblioteca.db')
     c = conn.cursor()
-    c.execute("""SELECT * FROM viewLivro
+    c.execute("""SELECT * FROM viewExemplar
                 WHERE Titulo=?
                 ORDER BY Nome
             """, (nome, ))
@@ -258,7 +308,7 @@ def buscaTituloOANA(nome):
 def buscaTituloOADNA(nome):
     conn = sqlite3.connect('biblioteca.db')
     c = conn.cursor()
-    c.execute("""SELECT * FROM viewLivro
+    c.execute("""SELECT * FROM viewExemplar
                 WHERE Titulo=?
                 ORDER BY Nome DESC
             """, (nome, ))
@@ -272,7 +322,7 @@ def buscaTituloOADNA(nome):
 def buscaTituloOEdit(nome):
     conn = sqlite3.connect('biblioteca.db')
     c = conn.cursor()
-    c.execute("""SELECT * FROM viewLivro
+    c.execute("""SELECT * FROM viewExemplar
                 WHERE Titulo=?
                 ORDER BY Editora
             """, (nome, ))
@@ -288,7 +338,7 @@ def buscaTituloOEdit(nome):
 def ordemAlfLivroO(titulo):
     conn = sqlite3.connect('biblioteca.db')
     c = conn.cursor()
-    c.execute("""SELECT * FROM viewLivro
+    c.execute("""SELECT * FROM viewExemplar
                 WHERE TituloOriginal=? 
                 ORDER BY TituloOriginal;
             """, (titulo, ))
@@ -302,7 +352,7 @@ def ordemAlfLivroO(titulo):
 def buscaTituloOrigOANA(nome):
     conn = sqlite3.connect('biblioteca.db')
     c = conn.cursor()
-    c.execute("""SELECT * FROM viewLivro
+    c.execute("""SELECT * FROM viewExemplar
                 WHERE TituloOriginal=?
                 ORDER BY Nome
             """, (nome, ))
@@ -316,7 +366,7 @@ def buscaTituloOrigOANA(nome):
 def buscaTituloOrigOADNA(nome):
     conn = sqlite3.connect('biblioteca.db')
     c = conn.cursor()
-    c.execute("""SELECT * FROM viewLivro
+    c.execute("""SELECT * FROM viewExemplar
                 WHERE TituloOriginal=?
                 ORDER BY Nome DESC
             """, (nome, ))
@@ -330,7 +380,7 @@ def buscaTituloOrigOADNA(nome):
 def buscaTituloOrigOEdit(nome):
     conn = sqlite3.connect('biblioteca.db')
     c = conn.cursor()
-    c.execute("""SELECT * FROM viewLivro
+    c.execute("""SELECT * FROM viewExemplar
                 WHERE TituloOriginal=?
                 ORDER BY Editora
             """, (nome, ))
@@ -340,6 +390,30 @@ def buscaTituloOrigOEdit(nome):
     return rows 
 #print(buscaTituloOrigOEdit("Fábulas de Esopo"))
 
+def buscaTituloOrdenaEdicao(nome):
+    conn = sqlite3.connect('biblioteca.db')
+    c = conn.cursor()
+    c.execute("""SELECT * FROM viewExemplar
+                WHERE TituloOriginal=?
+                ORDER BY Edicao
+            """, (nome, ))
+    rows = c.fetchall()
+    conn.commit()
+    conn.close()
+    return rows 
+
+def buscaTituloOrdenaPublicacao(nome):
+    conn = sqlite3.connect('biblioteca.db')
+    c = conn.cursor()
+    c.execute("""SELECT * FROM viewExemplar
+                WHERE TituloOriginal=?
+                ORDER BY Publicacao
+            """, (nome, ))
+    rows = c.fetchall()
+    conn.commit()
+    conn.close()
+    return rows
+
 # --------------------------------
 # PESQUISA POR ISBN
 
@@ -347,7 +421,7 @@ def buscaTituloOrigOEdit(nome):
 def volumes(isbn):
     conn = sqlite3.connect('biblioteca.db')
     c = conn.cursor()
-    c.execute("""SELECT * FROM viewLivro
+    c.execute("""SELECT * FROM viewExemplar
                 WHERE isbn=?
             """, (isbn,))
     rows = c.fetchall()
@@ -363,7 +437,7 @@ def volumes(isbn):
 def ordemAlfPC(text):
     conn = sqlite3.connect('biblioteca.db')
     c = conn.cursor()
-    c.execute("""SELECT * FROM viewLivro
+    c.execute("""SELECT * FROM viewExemplar
                 WHERE Titulo LIKE ? OR TituloOriginal LIKE ? OR Nome LIKE ? OR Sobrenome LIKE ? OR Editora LIKE ? 
                 ORDER BY Titulo;
             """, (text, text, text, text, text, ))
@@ -377,7 +451,7 @@ def ordemAlfPC(text):
 def ordemAlfDPC(text):
     conn = sqlite3.connect('biblioteca.db')
     c = conn.cursor()
-    c.execute("""SELECT * FROM viewLivro
+    c.execute("""SELECT * FROM viewExemplar
                 WHERE Titulo LIKE ? OR TituloOriginal LIKE ? OR Nome LIKE ? OR Sobrenome LIKE ? OR Editora LIKE ? 
                 ORDER BY Titulo DESC;
             """, (text, text, text, text, text, ))
